@@ -61,7 +61,7 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
 
 5. #### [StaffFull.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaffFull.java)
    
-    La clase StaffFull incluira los trabajadores que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+    La clase StaffFull incluira los trabajadores que tienen en cada seccion del software, es decir se unira la tabla de Staff con workerRole. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
         - staffId              Unique identifier for the staff member.
         - staffNumberId        Staff number identifier.
@@ -72,7 +72,7 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
 
 
 6. #### [WorkerRole.java](src\main\java\com\u2team\huansync\event\model\classes\WorkerRole.java)
-    La clase WorkerRole incluira el rol que tienen los trabajadores en el evento, haciendo referencia a las posiciones que se ne que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+    La clase WorkerRole incluira el rol que tienen los trabajadores en el evento, haciendo referencia a las posiciones que se necesitan en cada parte de seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
         - workerRoleId         Unique identifier for the workerRole.
         - workerRoleName       Name of the workerRole.
@@ -95,7 +95,7 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
 
 
 ### Enum:
-En ciertas clases se implementaron los Enums. Esto con el fin de manejar estados o varias que no se repetiran para ayudar a la eleccion de las caracteristicas.
+En ciertas clases se implementaron los Enums. Esto con el fin de manejar estados o variables que no se repetiran para ayudar a la eleccion de las caracteristicas.
 
 1.  #### StatusEquipmentEnum.java (Equipment.java): 
    
@@ -142,6 +142,26 @@ An interface extending IDao, providing a method to retrieve all entities with fu
  - IGetByIdFullDao<Tipo de Objeto>,
 
 
+ Dentro de los folders "DAO" se almacena cada clase que tendra los metodos para el manejo del funcioonamiento. Estos seran sobreescritos ya que se implementa cada interfaz.
+
+
+###  Modelo, Vista, Controlador
+
+
+El MVC es una arquitectura del software utilizada para separar el código por sus distintas responsabilidades, manteniendo distintas capas que se encargan de hacer una tarea muy concreta, lo que ofrece beneficios diversos.
+
+Debido a que se necesita implementar interfaces para la realizacion del proyecto, se realiza la construccion de paquetes en forma de implementar el MVC. 
+
+El modulo EVENT, posee una carpeta llamada Model y Controller.
+
+    - MODEL: esta carpeta almacena una subcarpeta de las clases que se deben usar y la subcarpeta DAO  que maneja los metodos del CRUD.
+
+    -CONTROLLER: Aqui se guarda una clase que hara de controlador, permitiendo una comunicacion fluida desde el modelo con la vista.
+
+
+
+
+
 
 
 ## Design pattern    
@@ -170,7 +190,7 @@ Para el modelo del paquete de eventos se implemento SOLID asi:
 
 
 ## Package Structure   
-[Indica dónde se encuentra el código fuente o los archivos relacionados con este grupo en el repositorio del proyecto, ademas de enlazar a sus respectivas carpetas]
+
 El modulo de Evento se encuentra en la ruta "\huanSync\src\main\java\com\u2team\huansync\event". y dentro del paquete Evento se manejo la siguiente estructura:
 
 Event
