@@ -1,4 +1,3 @@
-
 # Events
 
 ## Description
@@ -216,4 +215,3 @@ Event
                 - classes
                 - DAO
       
-   
