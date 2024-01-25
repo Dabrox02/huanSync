@@ -1,217 +1,165 @@
 # Events
 
 ## Description
-El modulo de eventos se encarga de gestionar la creacion y el manejo de los mismo, implementando lo que se conoce como CRUD. Ademas, nos encargamos de la creacion y manejo del personal de cada evento. Asignandolos a su respectivo evento. En adiccion se crea la gestion de roles para cada empleado. finalmente, se crea la tbal de inventario de utenciolios que se manejan en cada evento.
+The event module is responsible for managing the creation and handling of events, implementing what is known as CRUD (Create, Read, Update, Delete). Additionally, we take care of creating and managing the staff for each event, assigning them to their respective events. Role management for each employee is also established. Finally, we create the inventory table for utensils managed in each event.
 
+## OOP (Object Oriented Programming)
 
-## OOP (Object Oriented Programming)        
+For this module, we implemented Classes, Interfaces, Inheritance, and Polymorphism.
 
-Para este modulo implementamos Clases, Interfaces, Herencia y polimorfismo.
+### Classes:
+The classes are stored within the model/classes folders of each package. The following have been created:
 
+1. #### [Event.java](src\main\java\com\u2team\huansync\event\model\classes\Event.java):
+    The Event class will handle objects that will be the events to manage. This class has two constructors to improve event creation management. It includes respective Getters, Setters, and ToString. Attributes handled include:
 
-### Clases:
-Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se crearon:
+    - eventId              Unique identifier for the event.
+    - nameEvent            Name of the event.
+    - country              Country where the event is held.
+    - city                 City where the event takes place.
+    - address              Address of the event.
+    - peopleCapacity       Capacity of people allowed at the event.
+    - storeCapacity        Capacity of stores allowed at the event.
+    - restaurantCapacity   Capacity of restaurants allowed at the event.
+    - dateEvent            Date of the event.
+    - timeEvent            Time of the event.
+    - organizerId          Organizer's identifier for the event.
+    - ageClassification    Age classification of the event.
+    - statusEnum
 
-1.  #### [Event.java](src\main\java\com\u2team\huansync\event\model\classes\Event.java):
-        La clase Event manejara objetos que seran los eventos a manejar. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Eventos. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+2. #### [EventStaff.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaff.java)
+    The EventStaff class will handle objects representing the relationship between events and staff through IDs (managing many-to-many). This class has a constructor to improve the creation of the table relating events and staff. Attributes include:
 
-        - eventId              Unique identifier for the event.
-        - nameEvent            Name of the event.
-        - country              Country where the event is held.
-        - city                 City where the event takes place.
-        - address              Address of the event.
-        - peopleCapacity      Capacity of people allowed at the event.
-        - storeCapacity        Capacity of stores allowed at the event.
-        - restaurantCapacity   Capacity of restaurants allowed at the event.
-        - dateEvent            Date of the event.
-        - timeEvent            Time of the event.
-        - organizerId          Organizer's identifier for the event.
-        - ageClassification    Age classification of the event.
-        - statusEnum   
-
-
-2.  #### [EventStaff.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaff.java)
-
-    La clase EventStaff manejara objetos que seran la relacion entre eventos y personal por medio de ids (Manejando muchoa a mucho). Ademas esta clase tiene un constructor para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
-
-
-        - eventId            Unique identifier for the event associated with the staff member.
-        - staffId            Unique identifier for the staff member associated with the event.
-
+    - eventId            Unique identifier for the event associated with the staff member.
+    - staffId            Unique identifier for the staff member associated with the event.
 
 3. #### [EventStaffFull.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaffFull.java)
+    The EventStaffFull class will handle objects that represent the relationship between events and staff, with Event having a list of staff. This class extends its parent "Event" and has two constructors to improve table creation for relating events and staff. Attributes include:
 
-    La clase EventStaffFull manejara objetos que seran la relacion entre eventos y personal, realizando una adapcion donde Evento tendra una lista de staff, esto implica que la clase extendera de su padre "Event". Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Con ello creamos una nueva tlaba que enlazara y mejorara la manera de visualizar esta tabla de relacion de mucho a mucho. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+    - List<Staff> staff    List of staff members associated with the event.
+    - extends Event        Extends its parent Event.
 
+4. #### [Staff.java](src\main\java\com\u2team\huansync\event\model\classes\Staff.java)
+    The Staff class will handle objects representing the relationship between events and staff through IDs (managing many-to-many). This class has a constructor to improve the creation of the table relating events and staff. Attributes include:
 
-        - List<Staff> staff         List of staff members associated with the event.
-        - extends Event             extiende su padre Eventos
+    - staffId            Unique identifier for the staff member associated with the event.
 
+5. #### [StaffFull.java](src\main\java\com\u2team\huansync\event\model\classes\StaffFull.java)
+    The StaffFull class includes workers in each section of the software, joining the Staff table with workerRole. This class has two constructors to improve Staff creation. Attributes include:
 
-
-4.  #### [Staff.java](src\main\java\com\u2team\huansync\event\model\classes\Staff.java)
-
-    La clase Staff manejara objetos que seran la relacion entre eventos y personal por medio de ids (Manejando muchoa a mucho). Ademas esta clase tiene un constructor para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
-
-
-        - eventId            Unique identifier for the event associated with the staff member.
-        - staffId            Unique identifier for the staff member associated with the event.
-
-
-5. #### [StaffFull.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaffFull.java)
-   
-    La clase StaffFull incluira los trabajadores que tienen en cada seccion del software, es decir se unira la tabla de Staff con workerRole. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
-
-        - staffId              Unique identifier for the staff member.
-        - staffNumberId        Staff number identifier.
-        - nameStaff            Name of the staff member.
-        - birthdayStaff        Birthday of the staff member.
-        - statusStaffEnum      String representation of the staff status enum.
-        - workerRoleId         Worker role ID associated with the staff member.
-
+    - staffId                Unique identifier for the staff member.
+    - staffNumberId          Staff number identifier.
+    - nameStaff              Name of the staff member.
+    - birthdayStaff          Birthday of the staff member.
+    - statusStaffEnum        String representation of the staff status enum.
+    - workerRoleId           Worker role ID associated with the staff member.
 
 6. #### [WorkerRole.java](src\main\java\com\u2team\huansync\event\model\classes\WorkerRole.java)
-    La clase WorkerRole incluira el rol que tienen los trabajadores en el evento, haciendo referencia a las posiciones que se necesitan en cada parte de seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+    The WorkerRole class will include the role of workers at the event, referring to positions needed in each section of the software. This class has two constructors for better Staff creation management. Attributes include:
 
-        - workerRoleId         Unique identifier for the workerRole.
-        - workerRoleName       Name of the workerRole.
-        - workerRoleActivities List with strings representing the activities performed by the workerRole         
-  
-  
+    - workerRoleId           Unique identifier for the workerRole.
+    - workerRoleName         Name of the workerRole.
+    - workerRoleActivities   List of activities performed by the workerRole.
 
+7. #### [Equipment.java](src\main\java\com\u2team\huansync\event\model\classes\Equipment.java)
+    The Equipment class will store information about utensils implemented in each event. A CRUD management is created to interact with this class. Attributes include:
 
-7.  #### [Equipment.java](src\main\java\com\u2team\huansync\event\model\classes\Equipment.java)
-   
-    La clase Equipment se encargara de almacenar informacion acerca de los utenciilios que se implementan en cada evento. Se crea una gestion (CRUD) para poder interacturar con esta clase. Se manejan dos construcctores para tener un mejor control en el manejo de instancias. Incluye tambien Gettrs y Setters con su respetivo ToString.
-    
-    Dentro de la clase se maneja una sobre carga en el metodo "getStatusEquipmentEnum()". Permitiendo un mejor manejo en elEnum que maneja el estado del Item en Stock:
+    - equipmentId             Unique identifier for the equipment.
+    - nameEquipment           Name of the equipment.
+    - quantity                Quantity of the equipment available.
+    - statusEquipmentEnum     Current status of the equipment.
 
-            - equipmentId           Unique identifier for the equipment.
-            - nameEquipment         Name of the equipment.
-            - quantity              Quantity of the equipment available.
-            - statusEquipmentEnum   Current status of the equipment.
+### Enums:
+Enums were implemented in certain classes to manage states or variables that will not repeat, aiding in feature selection.
 
+1. #### StatusEquipmentEnum.java (in Equipment.java): 
+   - IN_STOCK("The item is in the warehouse")           
+   - ON_SITE("The item is at the Event's Location");
 
+2. #### AgeClassificationEnum.java (in Event.java):
+   - FAMILY("For the whole family")      
+   - YOUNGER("Only for young people")    
+   - ADULT("Adults Only");
 
-### Enum:
-En ciertas clases se implementaron los Enums. Esto con el fin de manejar estados o variables que no se repetiran para ayudar a la eleccion de las caracteristicas.
+3. #### StatusEnum.java (in Event.java):
+   - ACTIVE("It is active"),      
+   - FINISHED("It is Inactive")    
+   - PENDING("It is Pending")
 
-1.  #### StatusEquipmentEnum.java (Equipment.java): 
-   
-        - IN_STOCK("The item is in the warehouse")           Classification for events suitable for the whole family.
-        - ON_SITE("The item is at the Event's Location");    Status indicating that the item is currently at the event's location.
-
-
-2.  #### AgeClassificationEnum.java (Event.java):
-   
-        - FAMILY("For the whole family")      Classification for events specifically targeting younger audiences.
-        - YOUNGER("Only for young people")    Status indicating that the item is currently at the event's location.
-        - ADULT("Adults Only");               Classification for events meant for adult audiences only.
-
-
-3.  #### StatusEnum.java (Event.java):
-   
-        - ACTIVE("It is active"),      Classification for events specifically targeting younger audiences.
-        - FINISHED("It is Inactive")    Status indicating that the item is currently at the event's location.
-        - PENDING("It is Pending")            Classification for events meant for adult audiences only.
-
-        
-4. #### StatusStaffEnum.java (Stuff.java):
-   
-        - TASK_ASSIGNED     Indicates the worker has a task assigned
-        - NO_TASK_ASSIGNED  Indicates the worker does not have a task assigned
-        - DISMISSED        Indicates the worker is dismissed from their position
-
-
+4. #### StatusStaffEnum.java (in Staff.java):
+   - TASK_ASSIGNED     Indicates the worker has a task assigned
+   - NO_TASK_ASSIGNED  Indicates the worker does not have a task assigned
+   - DISMISSED         Indicates the worker is dismissed from their position
 
 ### Interfaces:
-Para el manejo de metodos se implemento el uso de interfaces. Se creo una interfaces IDao.java que se implementa en sub interfaces para el manejo del CRUD. La implementacion del CRUD se almacena en las carpetas llamadas DAO de cada paquete. 
-Estas subInterfaces se implementaran dependiendo del caso. 
+For method management, the use of interfaces was implemented. An IDao.java interface was created, which is implemented in sub-interfaces for CRUD management. CRUD implementation is stored in DAO folders of each package. These sub-interfaces are implemented depending on the case.
 
-An interface extending IDao, providing a method to retrieve all entities with full details.
- * This interface is generic, suitable for any type of entity collection.
+An interface extending IDao, providing a method to retrieve all entities with full details. This interface is generic, suitable for any type of entity collection.
 
- - IGetByIdDao<Tipo de Objeto>, 
- - IGetAllDao<Tipo de Objeto>,
- - ISaveDao<Tipo de Objeto>,
- - IUpdateDao<Tipo de Objeto>,
- - IDeleteDao<Tipo de Objeto>, 
- - IGetAllFull<Tipo de Objeto>,
- - IGetByIdFull<Tipo de Objeto>,
- - IGetByIdFullDao<Tipo de Objeto>,
+- IGetByIdDao<Object Type>,
+- IGetAllDao<Object Type>,
+- ISaveDao<Object Type>,
+- IUpdateDao<Object Type>,
+- IDeleteDao<Object Type>,
+- IGetAllFull<Object Type>,
+- IGetByIdFull<Object Type>,
+- IGetByIdFullDao<Object Type>,
 
+Each class in the "DAO" folders will have methods for functionality management, which are overridden as each interface is implemented.
 
- Dentro de los folders "DAO" se almacena cada clase que tendra los metodos para el manejo del funcioonamiento. Estos seran sobreescritos ya que se implementa cada interfaz.
+### Model, View, Controller (MVC)
 
+MVC is a software architecture used to separate code by its different responsibilities, maintaining distinct layers that handle very specific tasks, offering various benefits.
 
-###  Modelo, Vista, Controlador
+As interfaces are needed for project realization, the construction of packages was carried out to implement MVC.
 
+The EVENT module has a folder called Model and Controller.
 
-El MVC es una arquitectura del software utilizada para separar el código por sus distintas responsabilidades, manteniendo distintas capas que se encargan de hacer una tarea muy concreta, lo que ofrece beneficios diversos.
+- MODEL: This folder stores a subfolder of classes to be used and the "DAO" subfolder managing CRUD methods.
+- CONTROLLER: This folder contains a class that acts as a controller, allowing smooth communication from the model to the view. Each class within its folder will contain this logic.
 
-Debido a que se necesita implementar interfaces para la realizacion del proyecto, se realiza la construccion de paquetes en forma de implementar el MVC. 
+## Design Pattern
+[Explain what design pattern was implemented in this group and why it was chosen. Detail how it was applied in the code]
 
-El modulo EVENT, posee una carpeta llamada Model y Controller.
+- Builder: In our module, we implemented the Builder pattern only in the creation of the EVENT class, as this particular class managed a complex object. Therefore, it is an effective solution to control the creation of objects and improve readability.
 
-    - MODEL: esta carpeta almacena una subcarpeta de las clases que se deben usar y la subcarpeta DAO  que maneja los metodos del CRUD.
+## SOLID Application
 
-    -CONTROLLER: Aqui se guarda una clase que hara de controlador, permitiendo una comunicacion fluida desde el modelo con la vista.
+The SOLID principles were applied to the event package model as follows:
 
+**S** – Single Responsibility Principle: Applied through the use of interfaces for each action (CRUD), allowing for polymorphism as certain classes do not implement all actions.
 
+**O** – Open/Closed Principle: Currently, these interfaces implement actions such as save, read, modify, and delete. However, some classes have extra actions like showing all information or in a specific way, leaving it open to the addition of more actions.
 
+**L** – Liskov Substitution Principle: This principle explains how inheritance and polymorphism should be used correctly. Our classes make good use of this principle, where polymorphism can be applied.
 
+**I** – Interface Segregation Principle: "Objects should not be forced to depend on interfaces they do not use." Therefore, there is a parent interface containing all managed interfaces, and each interface has its own function and action.
 
+**D** – Dependency Inversion Principle: High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
+## Package Structure
 
-## Design pattern    
-[Explica qué patrón de diseño se implementó en este grupo y por qué se eligió. Detalla cómo se aplicó en el código]
-
-- Builder: En nuestro modulo implementamos Builder solo en la creacion de la clase EVENT, ya que esta clase en particular manejaba un objeto complejo. Por ello, es una solucion efectiva manejando el control de la creacion de los  objetos y mejorar la legibilidad.
-
-
-
-## SOLID application       
-
-Para el modelo del paquete de eventos se implemento SOLID asi:
-
-
-<strong>S</strong>  – Single Responsibility Principle: principio de responsabilidad única, también conocido como SRP. Se aplico manejo de interfaces para cada accion, (CRUD). Dando la posibilidad del polimorfismo, pues cierta clases no implentan todas las acciones.
-
-<strong>O</strong> – Open/Closed Principle: principio abierto/cerrado. Por el momento estas interfaces implementan acciones como guardar, leer, modificar y eliminar. Pero hay clases que tienen extra acciones como mostrar todo la informacion o de manera especifica. Es decir queda abieeto a la adiccion de mas acciones.
-
-<strong>L</strong> – Liskov Substitution Principle: principio de substitución de Liskov. Este principio nos explica cómo se debería utilizar correctamente la herencia y el polimorfismo. Nuestras clases hace un buen uso de este principio en donde se puede hacer uso del polimorfismo.
-
-<strong>I</strong> – Interface Segregation Principle: principio de segregación de interfaces. «Los objetos no deberían verse forzados a depender de interfaces que no utilizan». Por ello se hace un Padre que contiene todas las interfaces que se manejan. y cada interface tiene su propia funcion y accion.
-
-<strong>D</strong> – Dependency Inversion Principle: principio de inversión de dependencias. Los módulos de alto nivel no deberían depender de los módulos de bajo nivel. Ambos deberían depender de abstracciones
-
-
-
-
-## Package Structure   
-
-El modulo de Evento se encuentra en la ruta "\huanSync\src\main\java\com\u2team\huansync\event". y dentro del paquete Evento se manejo la siguiente estructura:
+The Event module is located at the path "\huanSync\src\main\java\com\u2team\huansync\event", and within the Event package, the following structure is managed:
 
 Event
    - Controller
    - DAO
-   - equipment
-       - controller
-       - model
-         - classes
+   - Equipment
+       - Controller
+       - Model
+         - Classes
          - DAO
-   - model
-         - classes
+   - Model
+         - Classes
          - DAO
-         - util
-   - staff
-        - controller
-        - model
-                - classes
+         - Util
+   - Staff
+        - Controller
+        - Model
+                - Classes
                 - DAO
-   - workerRole
-        - controller
-        - model
-                - classes
+   - WorkerRole
+        - Controller
+        - Model
+                - Classes
                 - DAO
-      
