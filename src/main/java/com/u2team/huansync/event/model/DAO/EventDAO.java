@@ -161,7 +161,7 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
         }
 
         // Use validation class with counterRepeated method.
-        int repeated = Validations.counterRepeated("tbl_events", "nameEvent", "asdasdasd");
+        int repeated = Validations.counterRepeated("tbl_events", "nameEvent", event.getNameEvent());
         if (repeated != 0) {
             System.out.println("nameEvent repeated");
             return;
@@ -250,10 +250,10 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
                 timeEvent = ?,  
                 organizerId = ?,
                 ageClassification = ?,
-                statusEstatus = ?
+                statusEvent  = ?
             WHERE eventId = ?;
                                """;
-
+                
             // Replace parameter "?" with corresponding index "(1,2,3...) and set info in each one.
             try (PreparedStatement ps = Operations.getConnection().prepareStatement(stmInsert)) {
                 ps.setString(1, event.getNameEvent());
