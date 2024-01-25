@@ -6,13 +6,14 @@ El modulo de eventos se encarga de gestionar la creacion y el manejo de los mism
 
 
 ## OOP (Object Oriented Programming)        
-[Explica cómo aplicaste la Programación Orientada a Objetos en este grupo. Enumera las clases creadas y proporciona una breve descripción de sus métodos y funcionalidades
+
 Para este modulo implementamos Clases, Interfaces, Herencia y polimorfismo.
+
 
 ### Clases:
 Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se crearon:
 
-1.  #### Event.java:
+1.  #### [Event.java](src\main\java\com\u2team\huansync\event\model\classes\Event.java):
         La clase Event manejara objetos que seran los eventos a manejar. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Eventos. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
         - eventId              Unique identifier for the event.
@@ -30,7 +31,7 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
         - statusEnum   
 
 
-2.  #### EventStaff.java
+2.  #### [EventStaff.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaff.java)
 
     La clase EventStaff manejara objetos que seran la relacion entre eventos y personal por medio de ids (Manejando muchoa a mucho). Ademas esta clase tiene un constructor para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
@@ -39,7 +40,7 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
         - staffId            Unique identifier for the staff member associated with the event.
 
 
-3.  #### EventStaffFull.java
+3. #### [EventStaffFull.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaffFull.java)
 
     La clase EventStaffFull manejara objetos que seran la relacion entre eventos y personal, realizando una adapcion donde Evento tendra una lista de staff, esto implica que la clase extendera de su padre "Event". Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Con ello creamos una nueva tlaba que enlazara y mejorara la manera de visualizar esta tabla de relacion de mucho a mucho. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
@@ -48,18 +49,19 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
         - extends Event             extiende su padre Eventos
 
 
-4.  #### EventStaff.java
 
-    La clase EventStaff manejara objetos que seran la relacion entre eventos y personal por medio de ids (Manejando muchoa a mucho). Ademas esta clase tiene un constructor para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+4.  #### [Staff.java](src\main\java\com\u2team\huansync\event\model\classes\Staff.java)
+
+    La clase Staff manejara objetos que seran la relacion entre eventos y personal por medio de ids (Manejando muchoa a mucho). Ademas esta clase tiene un constructor para mejorar el  manejo de la creacion de la tabla que relacionara eventos y staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
 
         - eventId            Unique identifier for the event associated with the staff member.
         - staffId            Unique identifier for the staff member associated with the event.
 
 
-5.  #### Staff.java
+5. #### [StaffFull.java](src\main\java\com\u2team\huansync\event\model\classes\EventStaffFull.java)
    
-    La clase Staff incluira los trabajadores que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+    La clase StaffFull incluira los trabajadores que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
         - staffId              Unique identifier for the staff member.
         - staffNumberId        Staff number identifier.
@@ -69,9 +71,8 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
         - workerRoleId         Worker role ID associated with the staff member.
 
 
-6. #### WorkerRole.java
-
-    La clase WorkerRole incluira los trabajadores que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+6. #### [WorkerRole.java](src\main\java\com\u2team\huansync\event\model\classes\WorkerRole.java)
+    La clase WorkerRole incluira el rol que tienen los trabajadores en el evento, haciendo referencia a las posiciones que se ne que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
 
         - workerRoleId         Unique identifier for the workerRole.
         - workerRoleName       Name of the workerRole.
@@ -80,9 +81,11 @@ Las clases se almacenan dentro de las carpetas model/classes de cada paquete, se
   
 
 
-7. #### Equipment 
+7.  #### [Equipment.java](src\main\java\com\u2team\huansync\event\model\classes\Equipment.java)
    
-    La clase WorkerRole incluira los trabajadores que tienen en cada seccion del software. Ademas esta clase tiene dos constructores para mejorar el  manejo de la creacion de Staff. Se incluye sus respectivos Getter, Setters y ToString. Manejamos atributos como :
+    La clase Equipment se encargara de almacenar informacion acerca de los utenciilios que se implementan en cada evento. Se crea una gestion (CRUD) para poder interacturar con esta clase. Se manejan dos construcctores para tener un mejor control en el manejo de instancias. Incluye tambien Gettrs y Setters con su respetivo ToString.
+    
+    Dentro de la clase se maneja una sobre carga en el metodo "getStatusEquipmentEnum()". Permitiendo un mejor manejo en elEnum que maneja el estado del Item en Stock:
 
             - equipmentId           Unique identifier for the equipment.
             - nameEquipment         Name of the equipment.
@@ -168,16 +171,29 @@ Para el modelo del paquete de eventos se implemento SOLID asi:
 
 ## Package Structure   
 [Indica dónde se encuentra el código fuente o los archivos relacionados con este grupo en el repositorio del proyecto, ademas de enlazar a sus respectivas carpetas]
-El modulo de Evento se encuentra en la ruta "C:\Users\criis\OneDrive\Desktop\ProyectoJava\huanSync\src\main\java\com\u2team\huansync\event". y dentro del paquete Evento se manejo la siguiente estructura:
+El modulo de Evento se encuentra en la ruta "\huanSync\src\main\java\com\u2team\huansync\event". y dentro del paquete Evento se manejo la siguiente estructura:
 
-[Nombre del Grupo]
+Event
    - Controller
    - DAO
-      - model
-   - staff
-      - controller
-      - model
+   - equipment
+       - controller
+       - model
          - classes
          - DAO
-  
-  Es importante destacar que implementamos el patron 
+   - model
+         - classes
+         - DAO
+         - util
+   - staff
+        - controller
+        - model
+                - classes
+                - DAO
+   - workerRole
+        - controller
+        - model
+                - classes
+                - DAO
+      
+   
