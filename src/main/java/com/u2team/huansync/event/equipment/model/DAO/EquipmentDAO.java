@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author criis
+ * @author Cristina Jerez Salas
  */
 /**
  * DAO class for Equipment entity. Implements ISaveDao, IDeleteDao, and
