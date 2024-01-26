@@ -209,11 +209,8 @@ git clone https://github.com/Dabrox02/huanSync.git
 ### TicketOffice
 - [See TicketOffice](src/main/java/com/u2team/huansync/ticketOffice/README%20TicketOffice.md)
 
-### Activity
-- [See Activity](src/main/java/com/u2team/huansync/activity/README_Activity.md)
-
 ### Trivia
-- [See Trivia](src/main/java/com/u2team/huansync/activity/trivia/)
+- [See Trivia](src/main/java/com/u2team/huansync/activity/trivia/README_Trivia.md)
 
 ### Cosplay
 - [See Cosplay](src/main/java/com/u2team/huansync/activity/cosplay/README_COSPLAY.md)

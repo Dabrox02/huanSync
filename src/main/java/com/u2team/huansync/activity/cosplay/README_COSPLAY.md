@@ -66,7 +66,7 @@ The module manages a qualification system that involves assigning jurors to each
 ### Qualification
 - the Qualification class models a specific rating for a cosplay, with details about the cosplay it refers to, the jury member providing the rating, and the score itself. The implementation includes getters and setters methods to access and modify these attributes.
 
-###QualificationDao
+### QualificationDao
 - QualificationDao defines the operations that can be performed regarding cosplay qualifications. Here is a summary of the methods defined in the interface
 
 ### QualificationDaoImp
