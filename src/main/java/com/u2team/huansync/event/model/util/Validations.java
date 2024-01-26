@@ -57,5 +57,21 @@ public class Validations {
         }
         return -1;
     }
-    
-}
+
+    public static int counterRepeatedUpdate(String table, String column, String value, long eventId) {
+        Operations.setConnection(BDConnection.MySQLConnection());
+        String stm = "SELECT COUNT(" + column + ") AS repeated FROM " + table + " WHERE " + column + " = ? AND eventId <> ?;";
+
+        try (PreparedStatement ps = Operations.getConnection().prepareStatement(stm)) {
+            ps.setString(1, value);
+            ps.setLong(2, eventId);
+            ResultSet rs = Operations.query_db(ps);
+            if (rs != null && rs.next()) {
+                int repeated = rs.getInt("repeated");
+                return repeated;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }

@@ -167,6 +167,7 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
             return;
         }
 
+
         // Create a query and send corresponding information in each field by replacing the character "?" with the information
         String stmInsert = "INSERT INTO tbl_events(nameEvent, countryEvent, cityEvent, addressEvent, peopleCapacity, storeCapacity, restaurantCapacity, dateEvent, timeEvent, organizerId, ageClassification, statusEvent)  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try (PreparedStatement ps = Operations.getConnection().prepareStatement(stmInsert)) {
@@ -214,12 +215,14 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
             System.out.println("Invalid date");
             return;
         }
-        // Use validation class with counterRepeated method.
-        int repeated = Validations.counterRepeated("tbl_events", "nameEvent", event.getNameEvent());
-        if (repeated != 0) {
-            System.out.println("nameEvent repeated");
-            return;
-        }
+
+        // Use validation class with counterRepeatedUpdate method.
+        int repeated = Validations.counterRepeatedUpdate("tbl_events", "nameEvent", event.getNameEvent(), event.getEventId());
+        if (repeated > 0) {
+        System.out.println("nameEvent repeated");
+        return;
+    }
+
 
         // prepare the object with set info of sqlEvent ?????????
         if (sqlEvent != null) {
