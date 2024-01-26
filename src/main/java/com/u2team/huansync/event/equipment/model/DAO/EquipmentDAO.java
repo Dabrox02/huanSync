@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author criis
+ * @author Cristina Jerez Salas
  */
 /**
  * DAO class for Equipment entity. Implements ISaveDao, IDeleteDao, and
@@ -66,7 +66,7 @@ public class EquipmentDAO implements ISaveDao<Equipment>, IDeleteDao<Equipment>,
             ps.setLong(1, idEquipment);
             int rows = Operations.insert_update_delete_db(ps);
             if (rows > 0) {
-                System.out.println("succesful delete workerRole");
+                System.out.println("successful delete workerRole");
                 return;
             } else {
                 System.out.println("not exists workerRole");

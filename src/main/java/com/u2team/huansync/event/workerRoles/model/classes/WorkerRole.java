@@ -14,9 +14,6 @@ import java.util.List;
 
 public class WorkerRole {
 
-    // Class Attributes
-
-
     // Unique identifier for the workerRole.
     private long workerRoleId;
 
