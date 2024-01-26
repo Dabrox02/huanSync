@@ -37,6 +37,13 @@ CREATE TABLE `tbl_staff_event` (
   `staffId` integer
 );
 
+CREATE TABLE `tbl_equipment` (
+  `equipmentId` integer PRIMARY KEY AUTO_INCREMENT,
+  `nameEquipment` varchar(15),
+  `quantity` integer,
+  `statusEquipment`ENUM ('IN_STOCK', 'ON_SITE') 
+);
+
 CREATE TABLE `tbl_ticketoffice` (
   `ticketOfficeId` INT PRIMARY KEY AUTO_INCREMENT,
   `eventId` INT NOT NULL,
