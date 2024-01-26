@@ -163,3 +163,12 @@ Event
         - Model
                 - Classes
                 - DAO
+
+
+## Class Diagram
+
+![](.\images\diagram1.png)
+
+
+
+![](.\images\diagram2.png)
