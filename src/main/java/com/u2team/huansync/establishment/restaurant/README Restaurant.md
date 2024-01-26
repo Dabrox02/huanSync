@@ -161,6 +161,12 @@ establishment
          - classes
          - DAO
 
+## Class Diagram
+
+![diagramaDeClasesDeRestaurante](/src/main/java/com/u2team/huansync/establishment/restaurant/img/UMLestablishment.png)
+
+https://drive.google.com/file/d/1wRkJHYZ3BRedu3MTt0Gn1ybLCy7ujwEP/view?usp=sharing
+
 ## Authors
 
 - Daniel Felipe Rincón Guerrero
