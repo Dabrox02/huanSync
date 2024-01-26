@@ -1,12 +1,10 @@
 package com.u2team.huansync.event.model.DAO;
 
 import com.u2team.huansync.event.DAO.ISaveDao;
-import com.u2team.huansync.event.model.classes.Event;
 import com.u2team.huansync.event.model.classes.EventStaff;
 import com.u2team.huansync.event.model.classes.EventStaffFull;
 import com.u2team.huansync.event.staff.model.DAO.StaffDAO;
 import com.u2team.huansync.event.staff.model.classes.Staff;
-import com.u2team.huansync.event.staff.model.classes.StaffFull;
 import com.u2team.huansync.event.staff.model.classes.StatusStaffEnum;
 import com.u2team.huansync.persistence.BDConnection;
 import com.u2team.huansync.persistence.Operations;
