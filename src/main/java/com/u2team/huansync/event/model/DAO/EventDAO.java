@@ -24,7 +24,8 @@ import java.util.List;
  *
  *         EventDao = implements abstract methods of iDao (interface)
  */
-public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao<Event>, IUpdateDao<Event>, IDeleteDao<Event>, IGetAllFull<EventStaffFull>, IGetByIdFullDao<EventStaffFull> {
+public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao<Event>, IUpdateDao<Event>,
+        IDeleteDao<Event>, IGetAllFull<EventStaffFull>, IGetByIdFullDao<EventStaffFull> {
 
     /**
      * Retrieves an event from the database based on its unique identifier (ID).
@@ -240,6 +241,14 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
             return;
         }
 
+        // Use validation class with counterRepeatedUpdate method.
+        int repeated = Validations.counterRepeatedUpdate("tbl_events", "nameEvent", event.getNameEvent(),
+                event.getEventId());
+        if (repeated > 0) {
+            System.out.println("nameEvent repeated");
+            return;
+        }
+
         // prepare the object with set info of sqlEvent ?????????
         if (sqlEvent != null) {
             sqlEvent.setNameEvent(event.getNameEvent());
@@ -269,7 +278,7 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
                         timeEvent = ?,
                         organizerId = ?,
                         ageClassification = ?,
-                        statusEvent = ?
+                        statusEvent  = ?
                     WHERE eventId = ?;
                                        """;
 
@@ -411,14 +420,13 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
         EventStaffFull eventStaffFull = new EventStaffFull();
         Operations.setConnection(BDConnection.MySQLConnection());
 
-        
         String eventQuery = "SELECT * FROM tbl_events WHERE eventId = ?";
         try (PreparedStatement ps = Operations.getConnection().prepareStatement(eventQuery)) {
             ps.setLong(1, id);
             ResultSet rs = Operations.query_db(ps);
 
             if (rs.next()) {
-                
+
                 eventStaffFull.setEventId(rs.getLong("eventId"));
                 eventStaffFull.setNameEvent(rs.getString("nameEvent"));
                 eventStaffFull.setCountry(rs.getString("countryEvent"));
@@ -430,23 +438,23 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
                 eventStaffFull.setDateEvent(rs.getDate("dateEvent").toLocalDate());
                 eventStaffFull.setTimeEvent(rs.getTime("timeEvent").toLocalTime());
                 eventStaffFull.setOrganizerId(rs.getLong("organizerId"));
-                eventStaffFull.setAgeClassification(AgeClassificationEnum.valueOf(rs.getString("ageClassification").toUpperCase()));
+                eventStaffFull.setAgeClassification(
+                        AgeClassificationEnum.valueOf(rs.getString("ageClassification").toUpperCase()));
                 eventStaffFull.setStatusEnum(StatusEnum.valueOf(rs.getString("statusEvent").toUpperCase()));
 
-                
                 String str = """
-                    SELECT ts.* FROM tbl_staff_event tse
-                    INNER JOIN tbl_events te ON te.eventId = tse.eventId
-                    INNER JOIN tbl_staff ts ON ts.staffId = tse.staffId
-                    WHERE te.eventId = ?;
-                """;
+                            SELECT ts.* FROM tbl_staff_event tse
+                            INNER JOIN tbl_events te ON te.eventId = tse.eventId
+                            INNER JOIN tbl_staff ts ON ts.staffId = tse.staffId
+                            WHERE te.eventId = ?;
+                        """;
 
                 try (PreparedStatement staffPs = Operations.getConnection().prepareStatement(str)) {
                     staffPs.setLong(1, id);
-                    
+
                     ResultSet staffRs = Operations.query_db(staffPs);
                     System.out.println(staffRs);
-                    
+
                     List<Staff> listStaff = new ArrayList<>();
 
                     while (staffRs.next()) {
@@ -460,7 +468,6 @@ public class EventDAO implements IGetByIdDao<Event>, IGetAllDao<Event>, ISaveDao
                         listStaff.add(staff);
                     }
 
-                    
                     eventStaffFull.setStaff(listStaff);
                 } catch (SQLException e) {
                     e.printStackTrace();
